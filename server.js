@@ -1,9 +1,12 @@
+
+// Dependencies
 var express = require("express");
 
 // Sets up the Express App
-// =============================================================
+
 var app = express();
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3000;
+
 
 // Requiring our models for syncing
 var db = require("./models");
@@ -15,16 +18,15 @@ app.use(express.json());
 // Static directory
 app.use(express.static("public"));
 
-// Routes
-// =============================================================
-require("./routes/post-api-routes.js")(app);
-require("./routes/author-api-routes.js")(app);
-require("./routes/html-routes.js")(app);
+
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 db.sequelize.sync({ force: true }).then(function() {
-  app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
+
+    app.listen(PORT, function() {
+      console.log("App listening on PORT " + PORT);
+    });
   });
-});
+
+
