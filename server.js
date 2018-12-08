@@ -1,6 +1,7 @@
 
 // Dependencies
 var express = require("express");
+var bodyParser = require("body-parser")
 
 // Sets up the Express App
 
@@ -15,7 +16,6 @@ var db = require("./models");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-//handlebars
 var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -31,7 +31,6 @@ require("./routes/html-routes")(app);
 
 
 // Syncing our sequelize models and then starting our Express app
-// =============================================================
 db.sequelize.sync({ force: true }).then(function() {
 
     app.listen(PORT, function() {

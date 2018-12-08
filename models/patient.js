@@ -86,7 +86,9 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-
+    Patient.associate = function (models) {
+        models.Patient.hasMany(models.Post);
+    };
     return Patient;
 };
 
