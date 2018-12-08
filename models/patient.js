@@ -30,7 +30,7 @@ module.exports = function (sequelize, DataTypes) {
         },
         address2: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             validate: {
                 len: [1]
             }
@@ -57,7 +57,7 @@ module.exports = function (sequelize, DataTypes) {
             }
         },
         phone_number: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false,
             validate: {
                 len: [10]
@@ -86,7 +86,9 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-
+    Patient.associate = function (models) {
+        models.Patient.hasMany(models.Post);
+    };
     return Patient;
 };
 
