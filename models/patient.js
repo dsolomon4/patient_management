@@ -55,33 +55,31 @@ module.exports = function (sequelize, DataTypes) {
             }
         },
         phone_number: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
+            // allowNull: false,
+        },
+        dob: {
+            type: DataTypes.DATE,
             allowNull: false,
             validate: {
-                len: [10]
-            },
-            dob: {
-                type: DataTypes.DATE,
-                allowNull: false,
-                validate: {
-                    isDate: true
-                }
-            },
-            sex: {
-                type: DataTypes.STRING,
-                allowNull: false,
-                validate: {
-                    len: [1]
-                }
-            },
-            reason_for_visit: {
-                type: DataTypes.STRING,
-                allowNull: false,
-                validate: {
-                    len: [1]
-                }
+                isDate: true,
+            }
+        },
+        sex: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+        reason_for_visit: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
             }
         }
+
     });
 
     Patient.associate = function (models) {
@@ -89,5 +87,3 @@ module.exports = function (sequelize, DataTypes) {
     };
     return Patient;
 };
-
-

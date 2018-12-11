@@ -1,59 +1,64 @@
-// $(document).ready(function(){
 
-// $("#submit-button").on("click", function (event) {
-//     event.preventDefault();
+    $(document).ready(function () {
 
+        $("#return-home").hide();
 
-//     function createNewPatient() {
-//         var isValid = true;
-//         $('.form-control').each(function () {
-//             if ($(this).val() === '')
-//                 isValid = false;
-//         });
-//         return isValid;
-//     }
-//     // If all required fields are filled
-//     if (createNewPatient() == true) {
-//         console.log("valid");
-//         // Create an object 
-//         var newPatient = {
-//             first_name: $("#firstName").val().trim(),
-//             last_name: $("#lastName").val().trim(),
-//             email:  $("#email").val().trim(),
-//             address: $("#address").val().trim(),
-//             address2: $("#address2").val().trim(),
-//             city:  $("#city").val().trim(),
-//             state: $("#state").val().trim(),
-//             zip: $("#zipCode").val().trim(),
-//             phone_number:  $("#phoneNumber").val().trim(),
-//             dob: $("#dobnameInput").val().trim(),
-//             sex: $("#sex").val().trim(),
-//             reason_for_visit:  $("#visit").val().trim()
-//         }
-        
-//         document.getElementById("survey-form").reset();
+        $("#submit-button").on("click", function (event) {
+            event.preventDefault();
 
-//         console.log(newPatient.first_name + " has been created")
+                
 
-//     } 
+                function createNewPatient() {
+                var isValid = true;
+                $('.form-control').each(function () {
+                    if ($(this).val() === '')
+                        isValid = false;
+                });
+                console.log("valid")
+                return isValid;
+            }
 
-    
+                var newPatient = {
+                    first_name: $("#firstName").val(),
+                    last_name: $("#lastName").val(),
+                    email: $("#email").val(),
+                    address: $("#address").val(),
+                    address2: $("#address2").val(),
+                    city: $("#city").val(),
+                    state: $("#state").val(),
+                    zip: $("#zipCode").val(),
+                    phone_number: $("#phoneNumber").val(),
+                    dob: $("#dob").val(),
+                    sex: $("#sex").val(),
+                    reason_for_visit: $("#visit").val()
+                };
 
-//     $.post("/api/patients", newPatient)
-//     .then(
-// console.log("we have added " + newPatient.first_name + " to the database")
-//     );
+                $("#new-patient-form").hide();
+
+                console.log(newPatient.first_name + " has been created")
 
 
+                var currentURL = window.location.origin;
+
+                 $.post(currentURL + "/api/patients", newPatient, function (data) {
+
+
+                    console.log( data.first_name)
+                    document.getElementById("patient-added").innerText = data.first_name + " " + data.last_name + " has succesfully be added";
+                    $("#return-home").show();
+
+                });
+            
+                
+
+        });
 
 
 
 
-// });
+
+
+    })
 
 
 
-
-
-
-// })
