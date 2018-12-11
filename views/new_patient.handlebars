@@ -1,8 +1,11 @@
 <div class="container">
+    <div id="holder">
     <div>
-        <h1>Enter New Patient</h1>
+        <h2>Enter New Patient</h2>
     </div>
     <div class="container">
+        
+        sex: {
         <form id="new-patient-form">
             <div class="form-row">
                 <div class="col-md-4 mb-3">
@@ -78,74 +81,17 @@
                 </div>
             </div>
             <button class="btn btn-primary" type="submit-new" id="submit-button">Submit form</button>
-
+<br>
+<br>
     </div>
     </form>
+
+<div>
+    <p id="patient-added"></p>
+     <a class="btn btn-primary btn-lg" id="return-home" href="/" role="button">Return Home</a>
+
+</div>
+
 </div>
 </div>
-
-<script>
-
-
-
-    $(document).ready(function () {
-
-        $("#submit-button").on("click", function (event) {
-            event.preventDefault();
-
-                function createNewPatient() {
-                var isValid = true;
-                $('.form-control').each(function () {
-                    if ($(this).val() === '')
-                        isValid = false;
-                });
-                console.log("valid")
-                return isValid;
-            }
-                        // If all required fields are filled
-         //   if (createNewPatient() == true) {
-         //       console.log("valid also");
-                // Create an object 
-                var newPatient = {
-                    first_name: $("#firstName").val(),
-                    last_name: $("#lastName").val(),
-                    email: $("#email").val(),
-                    address: $("#address").val(),
-                    address2: $("#address2").val(),
-                    city: $("#city").val(),
-                    state: $("#state").val(),
-                    zip: $("#zipCode").val(),
-                    phone_number: $("#phoneNumber").val(),
-                    dob: $("#dob").val(),
-                    sex: $("#sex").val(),
-                    reason_for_visit: $("#visit").val()
-                };
-
-                document.getElementById("new-patient-form").reset();
-
-                console.log(newPatient.first_name + " has been created")
-
-
-                var currentURL = window.location.origin;
-
-                 $.post(currentURL + "/api/patients", newPatient, function (data) {
-
-
-                    console.log( data.first_name)
-                });
-            
-
-
-        });
-
-
-
-
-
-
-    })
-
-
-
-
-</script>
+</div>

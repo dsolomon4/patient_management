@@ -1,19 +1,140 @@
+<div class="container">
+     <div id="holder">
+
 <form id="find-patient">
         <div class="form-group">
             <label for="nameInput">
-                <h1>Patient name</h1>
+                <h2>Search Patient</h2>
             </label>
+            <div class="container">
             <label for="first-name">First name</label>
             <input type="text" class="form-control" id="firstName">
             <label for="last-name">Last name</label>
             <input type="text" class="form-control" id="lastName">
+        <br>
+        <button class="btn btn-primary" id="submit-button" type="submit">Submit</button>
+        <br> <br>
+        
         </div>
 
-        <button id="submit-button" type="submit">Submit</button>
     </form>
+
+     </div>
+     </div>
+
+<div>
+    <a class="btn btn-primary" href="/newpatient" role="button">Add New Patient</a>
+</div>
+
 
 
 <div>
-    <a class="btn btn-primary btn-lg" href="/newpatient" role="button">Add New Patirnt</a>
+
+    hello
 </div>
+
+<table class="patient-search">
+  <thead>
+    <tr>
+      <th scope="col">Patient id</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Select Patient</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td> <a href="/patientview" role="button"> Open Patient </a></td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<script>
+
+
+
+    $(document).ready(function () {
+
+        $(".patient-search").hide();
+
+        $("#submit-button").on("click", function (event) {
+            event.preventDefault();
+
+                
+
+                function createNewPatient() {
+                var isValid = true;
+                $('.form-control').each(function () {
+                    if ($(this).val() === '')
+                        isValid = false;
+                });
+                console.log("valid")
+                return isValid;
+            }
+
+                var newPatient = {
+                    first_name: $("#firstName").val(),
+                    last_name: $("#lastName").val(),
+                    email: $("#email").val(),
+                    address: $("#address").val(),
+                    address2: $("#address2").val(),
+                    city: $("#city").val(),
+                    state: $("#state").val(),
+                    zip: $("#zipCode").val(),
+                    phone_number: $("#phoneNumber").val(),
+                    dob: $("#dob").val(),
+                    sex: $("#sex").val(),
+                    reason_for_visit: $("#visit").val()
+                };
+
+                $("#new-patient-form").hide();
+
+                console.log(newPatient.first_name + " has been created")
+
+
+                var currentURL = window.location.origin;
+
+                 $.post(currentURL + "/api/patients", newPatient, function (data) {
+
+
+                    console.log( data.first_name)
+                    document.getElementById("patient-added").innerText = data.first_name + " " + data.last_name + " has succesfully be added";
+                    $("#return-home").show();
+
+                });
+            
+                
+
+        });
+
+
+
+
+
+
+    })
+
+
+
+
+    
+</script>
+
+
+
 

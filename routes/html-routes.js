@@ -10,4 +10,8 @@ module.exports = function(app) {
     app.get("/newpatient", function(req, res){
        res.render(path.join(__dirname, "../views/new_patient.handlebars")); 
     })
+
+    app.get("/patientview", function(req, res){
+        res.render(path.join(__dirname, "../views/patient_view")); 
+     })
 }
