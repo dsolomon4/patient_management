@@ -3,7 +3,7 @@
 
         $("#return-home").hide();
 
-        $("#submit-button").on("click", function (event) {
+        $("#submit-new").on("click", function (event) {
             event.preventDefault();
 
                 
@@ -30,7 +30,7 @@
                     phone_number: $("#phoneNumber").val(),
                     dob: $("#dob").val(),
                     sex: $("#sex").val(),
-                    reason_for_visit: $("#visit").val()
+                    // reason_for_visit: $("#visit").val()
                 };
 
                 $("#new-patient-form").hide();

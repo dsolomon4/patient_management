@@ -4,14 +4,14 @@ var path = require("path");
 module.exports = function(app) {
 
     app.get("/", function(req, res){
-       res.render(path.join(__dirname, "../views/index")); 
+       res.render(path.join(__dirname, "../public/index.html")); 
     })
 
     app.get("/newpatient", function(req, res){
-       res.render(path.join(__dirname, "../views/new_patient.handlebars")); 
+       res.sendFile(path.join(__dirname, "../public/new_patient.html")); 
     })
 
     app.get("/patientview", function(req, res){
-        res.render(path.join(__dirname, "../views/patient_view")); 
+        res.render(path.join(__dirname, "../public/patient_view.html")); 
      })
 }
