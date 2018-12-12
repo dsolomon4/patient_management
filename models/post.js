@@ -23,6 +23,14 @@ module.exports = function (sequelize, DataTypes) {
             }
         },
 
+        // active: {
+        //     type: DataTypes.TEXT,
+        //     allowNull: false,
+        //     validate: {
+        //         len: [1]
+        //     }
+        // },
+
         body: {
             type: DataTypes.TEXT,
             allowNull: false,
