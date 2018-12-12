@@ -24,7 +24,7 @@
      <!-- Moment-->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 
     <title> Transparent Care</title>
 </head>
@@ -40,13 +40,14 @@
     <div>
         <h2>Patient View</h2>
     
-        <p>Patient Id: {{Patient.id}} </p>
-        <p>Patient First Name: {{Patient.first_name}}</p>
-        <p>Patient Last Name: {{Patient.last_name}}}</p>
+ 
     
         <form action="post">
     
-    
+            <p id="view_id"> </p>
+            <p id="view_first"></p>
+            <p id="view_last"> </p>
+
             <div class="form-row">
                 <div class="col-md-6 mb-3">
                     <label for="visit">Reason for Visit</label>
@@ -67,10 +68,10 @@
     
         </form>
     
-    </div>
-
+    </div> 
     <script src="/js/new_patient.js"></script>
     <script src="/js/main_page.js"></script>
+    <script src="/js/view.js"></script>
 
 </body>
 
