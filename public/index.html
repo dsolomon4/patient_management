@@ -37,9 +37,43 @@
     </div>
 
  
-    {{{body}}}
+    <div class="container">
+        <div id="holder">
+   
+   <form id="find-patient">
+           <div class="form-group">
+               <label for="nameInput">
+                   <h2>Search Patient</h2>
+               </label>
+               <div class="container">
+               <label for="first-name">First name</label>
+               <input type="text" class="form-control" id="firstName">
+               <label for="last-name">Last name</label>
+               <input type="text" class="form-control" id="lastName">
+           <br>
+           <button class="btn btn-primary" id="submit-search" type="submit">Submit</button>
+           <br> <br>
+           
+           </div>
+   
+       </form>
+   
+        </div>
+        </div>
+   
+   <div>
+       <a class="btn btn-primary" href="/newpatient" role="button">Add New Patient</a>
+   </div>
+   
+   
+   
+   <div>
+   
+       
+   </div>
 
     <script src="/js/new_patient.js"></script>
+    <script src="/js/main_page.js"></script>
 
 </body>
 

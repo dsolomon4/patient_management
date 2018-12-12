@@ -4,7 +4,7 @@ var db = require("../models");
 module.exports = function(app){
     app.get("/api/patients", function(req, res){
         db.Patient.findAll({
-            include: [db.Patient]
+            include: [db.Post]
         }).then(function(dbPatient){
             res.json(dbPatient);
         });
@@ -15,7 +15,7 @@ module.exports = function(app){
             where: {
                 id: req.params.id
             },
-            include: [db.Patient]
+            include: [db.Post]
         }).then(function(dbPatient) {
             res.json(dbPatient);
         });

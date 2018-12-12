@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Charmonman|Noto+Serif+TC:400,700" rel="stylesheet">
+
+     <!-- Moment-->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <title> Transparent Care</title>
+</head>
+
+<body>
+    <div>
+        <h1>Transparent Care </h1>
+        <h1 id="h1-2">Patient Management System</h1>
+
+    </div>
+
+ 
+    <div>
+        <h2>Patient View</h2>
+    
+        <p>Patient Id: {{Patient.id}} </p>
+        <p>Patient First Name: {{Patient.first_name}}</p>
+        <p>Patient Last Name: {{Patient.last_name}}}</p>
+    
+        <form action="post">
+    
+    
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="visit">Reason for Visit</label>
+                    <select class="custom-select" id="reason-visit">
+                        <option selected>Select an Option</option>
+                        <option value="checkUp">Check Up</option>
+                        <option value="followUp">Follow Up</option>
+                        <option value="emergency">Emergency</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <label for="validationDefault01">Notes on Visit</label>
+                    <textarea name="body" id="visit-description" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+    
+        </form>
+    
+    </div>
+
+    <script src="/js/new_patient.js"></script>
+    <script src="/js/main_page.js"></script>
+
+</body>
+
+</html>
