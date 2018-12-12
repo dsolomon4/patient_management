@@ -35,14 +35,14 @@ module.exports = function (sequelize, DataTypes) {
         },
         city: {
             type: DataTypes.STRING,
-            // allowNull: false,
+            allowNull: false,
             validate: {
                 len: [1]
             }
         },
         state: {
             type: DataTypes.STRING,
-            // allowNull: false,
+            allowNull: false,
             validate: {
                 len: [2]
             }
@@ -71,14 +71,13 @@ module.exports = function (sequelize, DataTypes) {
             validate: {
                 len: [1]
             }
+        }, active: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
         }
-        // reason_for_visit: {
-        //     type: DataTypes.STRING,
-        //     allowNull: false,
-        //     validate: {
-        //         len: [1]
-        //     }
-        // }
 
     });
 

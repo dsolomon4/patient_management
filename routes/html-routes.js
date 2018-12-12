@@ -12,6 +12,6 @@ module.exports = function(app) {
     })
 
     app.get("/patientview", function(req, res){
-        res.render(path.join(__dirname, "../public/patient_view.html")); 
+        res.sendFile(path.join(__dirname, "../public/patient_view.html")); 
      })
 }
