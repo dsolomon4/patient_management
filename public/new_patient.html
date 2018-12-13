@@ -45,7 +45,7 @@
         <div class="container">
             
         
-            <form id="new-patient-form">
+            <form id="new-patient-form" method="POST">
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationDefault01">First name</label>
@@ -71,11 +71,11 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label for="validationDefault03">City</label>
-                        <input type="text" class="form-control" id="City" placeholder="City" required>
+                        <input type="text" class="form-control" id="city" placeholder="City" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationDefault04">State</label>
-                        <input type="text" class="form-control" id="State" placeholder="State" required>
+                        <input type="text" class="form-control" id="state" placeholder="State" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationDefault05">Zip</label>
@@ -108,25 +108,28 @@
                 </div>
     
     
-                <!-- <div class="form-row">
+                <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label for="visit">Reason for Visit</label>
-                        <select class="custom-select" id="visit">
+                        <label for="active">Currently Active</label>
+                        <select class="custom-select" id="active">
                             <option selected>Select an Option</option>
-                            <option value="checkUp">Check Up</option>
-                            <option value="followUp">Follow Up</option>
-                            <option value="emergency">Emergency</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
                         </select>
                     </div>
-                </div>  -->
+                </div> 
                 <button class="btn btn-primary" type="submit-new" id="submit-new">Submit form</button>
     <br>
     <br>
         </div>
         </form>
 
+        <div>
+            <p id="patient-added"></p>
+             <a class="btn btn-primary btn-lg" id="return-home" href="/" role="button">Return Home</a>
+        
+        </div>
     <script src="/js/new_patient.js"></script>
-    <script src="/js/main_page.js"></script>
 
 </body>
 

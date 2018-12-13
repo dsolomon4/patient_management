@@ -1,5 +1,25 @@
  $(document).ready(function () {
 
+    $.ajax({ url: "api/patients", method: "GET", })
+    .then(function(data){
+        console.log(data)
+       
+
+        for (var i = 0; i< data.length; i++){
+            if (data[i].active === "active"){
+                console.log(data[i].first_name)
+                $("#data-print").text(data[i].first_name)
+            }
+
+        }
+    })
+  
+
+
+
+
+
+
      $(".patient-search").hide();
 
      $("#submit-search").on("click", function (event) {
