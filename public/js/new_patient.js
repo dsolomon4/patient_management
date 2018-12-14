@@ -43,7 +43,7 @@
 
 
                     console.log( data.first_name)
-                    location.href = "/patientview";
+                    location.href = "/";
 
                 });
             
