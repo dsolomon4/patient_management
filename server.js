@@ -27,6 +27,7 @@ app.use(express.static("public"));
 
 require("./routes/patient-api-routes")(app);
 require("./routes/html-routes")(app);
+require("./routes/post-api-routes")(app);
 
 
 
