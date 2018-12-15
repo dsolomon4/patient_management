@@ -72,7 +72,7 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         }, active: {
-            type: DataTypes.STRING,
+            type: DataTypes.BOOLEAN,
             allowNull: false,
             validate: {
                 len: [1]
