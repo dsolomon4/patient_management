@@ -10,16 +10,16 @@ module.exports = function(app){
         });
     });
 
-    // app.get("/api/patients/:id", function(req, res){
-    //     db.Patient.findOne({
-    //         where: {
-    //             id: req.params.id
-    //         },
-    //         include: [db.Post]
-    //     }).then(function(dbPatient) {
-    //         res.json(dbPatient);
-    //     });
-    // });
+    app.get("/api/patient/:id", function(req, res){
+        db.Patient.findOne({
+            where: {
+                id: req.params.id
+            },
+            include: [db.Post]
+        }).then(function(dbPatient) {
+            res.json(dbPatient);
+        });
+    });
 
     app.get("/api/patients/:first_name", function(req, res){
     db.Patient.findOne({

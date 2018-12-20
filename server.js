@@ -16,10 +16,10 @@ var db = require("./models");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-var exphbs = require("express-handlebars");
+// var exphbs = require("express-handlebars");
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
+// app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+// app.set("view engine", "handlebars");
 
 
 // Static directory
@@ -27,11 +27,12 @@ app.use(express.static("public"));
 
 require("./routes/patient-api-routes")(app);
 require("./routes/html-routes")(app);
+require("./routes/post-api-routes")(app);
 
 
 
 // Syncing our sequelize models and then starting our Express app
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync({ force: false }).then(function() {
 
     app.listen(PORT, function() {
       console.log("App listening on PORT " + PORT);
