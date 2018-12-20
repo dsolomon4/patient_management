@@ -79,6 +79,7 @@ module.exports = function (sequelize, DataTypes) {
             }
         }
 
+
     });
 
     Patient.associate = function (models) {

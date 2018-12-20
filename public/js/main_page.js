@@ -18,7 +18,8 @@ $(document).ready(function () {
                    var div = $("<div>");
                    div.append("<p> Patient id:" + data[i].id + " " + "<p>")
                    div.append("<p> Name: " + data[i].first_name + " "  + data[i].last_name+ "<p>")
-                   div.append('<a role= button href="/patientview"> See Patient </a>' )
+                   // i added an ID for see patient
+                   div.append('<a role= button href="/patientview/' + data[i].id + '"> See Patient </a>' )
 
                    $("#data-print").append(div)
 
