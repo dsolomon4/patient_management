@@ -14,7 +14,13 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         },
-
+        patient_id: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
         reason_for_visit: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -23,15 +29,15 @@ module.exports = function (sequelize, DataTypes) {
             }
         },
 
-        // active: {
-        //     type: DataTypes.TEXT,
-        //     allowNull: false,
-        //     validate: {
-        //         len: [1]
-        //     }
-        // },
-
         body: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+        
+        employee: {
             type: DataTypes.TEXT,
             allowNull: false,
             validate: {

@@ -4,18 +4,6 @@
         $("#submit-new").on("click", function (event) {
             event.preventDefault();
 
-                
-
-            //     function createNewPatient() {
-            //     var isValid = true;
-            //     $('.form-control').each(function () {
-            //         if ($(this).val() === '')
-            //             isValid = false;
-            //     });
-            //     console.log("valid")
-            //     return isValid;
-            // }
-
                 var newPatient = {
                     first_name: $("#firstName").val(),
                     last_name: $("#lastName").val(),
