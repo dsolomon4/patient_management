@@ -39,12 +39,12 @@ module.exports = function (app) {
 
 
     app.put("/api/patients/:id", function (req, res) {
-        
+        console.log("In activate patient ")
         db.Patient.update({
             active: req.body.active
         }, {
             where: {
-                id: req.body.id
+                id: req.params.id
             }
         }).then(function (dbPatient) {
             res.json(dbPatient);

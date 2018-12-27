@@ -3,14 +3,78 @@ $(document).ready(function () {
 
     // })
 
+  
+
     var pId = window.location.href.split("patientview/")[1]
     $.ajax("/api/patient/" + pId,{
         type: "GET",
         
     }).then(function(data){
         console.log(data)
-        $("#patient_name").html("First Name: " + data.first_name + "First Name: " + data.last_name)
+        var postFirst = $("#view_first").html("First Name: " + data.first_name)
+        var postLast = $("#view_last").html("Last Name: " + data.last_name )
+        var postId = $("#view_id").html("Patient ID: " + data.id)
+
+
+        completePatient(data)
+
+        submitPost(data)
+
+        function completePatient(data){
+            $("#complete").on("click", function(event){
+                event.preventDefault();
+            
+                $.ajax({
+                    method: 'PUT',
+                    url: '/api/patients/' + data.id,
+                    data: {
+                        active: false
+                    }
+                }).then(result => {
+                    console.log(result)
+        
+                    // location.href = "/";
+                })
+        
+            
+            
+            })
+        }
+
+        function submitPost(data){
+            $("#complete").on("click", function(event){
+                event.preventDefault();
+                
+                
+                var postVisitNotes = {
+                    first_name: data.first_name,
+                    last_name: data.last_name,
+                    patient_id: data.id,
+                    reason_for_visit: $("#reason-visit").val(),
+                    body: $("#visit-description").val(),
+                    employee: $("#employee").val()
+                };
+                
+                console.log(postVisitNotes)
+
+                var currentURL = window.location.origin;
+
+
+                 $.post(currentURL + "/api/posts", postVisitNotes, function (data) {
+
+
+                    console.log( data.first_name + " visit has been posted")
+                    // location.href = "/";
+
+                });
+    
+            
+            })
+        }
     });
+
+   
+    
 
     $("#see-doctor").on("click", function(event){
         event.preventDefault();
@@ -35,39 +99,5 @@ $(document).ready(function () {
 
 
 
-    // $("#submit-search").on("click", function (event) {
-    //     event.preventDefault();
-
-
-    //     var searchPatient = {
-    //         first_name: $("#firstName").val(),
-    //         last_name: $("#lastName").val(),
-            
-    //     };
-
-    //     $("#new-patient-form").hide();
-
-    //     console.log(searchPatient.first_name + " has been searched")
-
-
-    //     var currentURL = window.location.origin;
-
-    //     $.get(currentURL + "/api/patients", searchPatient, function (data) {
-
-
-    //         console.log(data.first_name)
-    //         document.getElementById("patient-added").innerText = data.first_name + " " + data.last_name + " has succesfully be added";
-    //         $("#return-home").show();
-
-    //     });
-
-
-
-    // });
-
-
-
-
-
-
 })
+
