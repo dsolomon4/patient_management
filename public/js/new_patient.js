@@ -4,9 +4,10 @@
         $("#submit-new").on("click", function (event) {
             event.preventDefault();
 
+
                 var newPatient = {
-                    first_name: $("#firstName").val(),
-                    last_name: $("#lastName").val(),
+                    first_name: $("#firstName").val().toLowerCase(),
+                    last_name: $("#lastName").val().toLowerCase(),
                     email: $("#email").val(),
                     address: $("#address").val(),
                     address2: $("#address2").val(),
@@ -19,7 +20,7 @@
                     active: $("#active").val()
                 };
 
-                $("#new-patient-form").hide();
+                
 
                 console.log(newPatient.first_name + " has been created")
 

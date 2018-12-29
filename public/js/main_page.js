@@ -1,14 +1,25 @@
 $(document).ready(function () {
 
     $("#table-search").hide()
+    $("#holder").hide()
 
     getPatientsAndRender()
 
     searchPatients()
 
+    searchClick()
 
+    updateDoctorQue()
 
 })
+
+function searchClick() {
+    $("#search-click").on("click", function (event) {
+        event.preventDefault();
+        $("#holder").show()
+        $("#search-click").hide()
+    })
+}
 
 function getPatientsAndRender() {
 
@@ -26,12 +37,12 @@ function getPatientsAndRender() {
                     renderPatient(data)
 
                     function renderPatient(data) {
-
+                       
                         var waitList = $("<tr>");
                         waitList.append("<td>" + data[i].id + " " + "</td>")
                         waitList.append("<td>" + data[i].first_name + "</td>")
                         waitList.append("<td>" + data[i].last_name + "</td>")
-                        waitList.append('<td> <a role= button href="/patientview/'+ data[i].id +'"> See Patient </a> </td>')
+                        waitList.append('<td> <a role= button href="/patientview/' + data[i].id + '"> See Patient </a> </td>')
 
                         $("#data-print").append(waitList)
 
@@ -46,14 +57,12 @@ function searchPatients() {
     $("#submit-search").on("click", function (event) {
         event.preventDefault();
 
-
-        var searchPatient = $("#firstName").val();
-        var lastName = $("#lastName").val();
+        var searchPatient = $("#firstName").val().toLowerCase();
+        var lastName = $("#lastName").val().toLowerCase();
         var searchId;
 
         console.log(lastName, "this is the last")
         console.log(searchPatient + " has been searched")
-
 
         $.ajax({
                 url: "api/patients",
@@ -76,9 +85,11 @@ function searchPatients() {
                             var dateOb = data[i].dob
                             var viewDob = moment(dateOb).format('ll')
 
+
+
                             var div = $("<tr>");
-                            div.append("<td> Patient id:" + data[i].id + " " + "</td>")
-                            div.append("<td>" + data[i].first_name + "</td>")
+                            div.append("<td>" + data[i].id + " " + "</td>")
+                            div.append("<td>" + data[i].first_name+ "</td>")
                             div.append("<td>" + data[i].last_name + "</td>")
                             div.append("<td>" + viewDob + "</td>")
 
@@ -113,4 +124,47 @@ function searchPatients() {
             })
 
     });
+}
+
+function updateDoctorQue(){
+    $.ajax({
+        url: "api/posts",
+        method: "GET"
+    }).then(result => {
+        console.log("this will load doctor wait")
+        console.log(result)
+        
+        for (var i = 0; i < result.length; i++) {
+            if (result[i].see_doctor === true) {
+                
+                console.log(result[i].patient)
+
+                $.ajax({
+                    url: "api/patients",
+                    method: "GET"
+                })
+                .then(function (data) {
+                    console.log(data)
+                })
+
+                // renderPatient(data)
+
+                // function renderPatient(data) {
+                   
+                //     var waitList = $("<tr>");
+                //     waitList.append("<td>" + data[i].id + " " + "</td>")
+                //     waitList.append("<td>" + data[i].first_name + "</td>")
+                //     waitList.append("<td>" + data[i].last_name + "</td>")
+                //     waitList.append('<td> <a role= button href="/patientview/' + data[i].id + '"> See Patient </a> </td>')
+
+                //     $("#doctor-que-print").append(waitList)
+
+                // }
+            }
+        }
+        
+
+    })
+
+
 }

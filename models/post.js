@@ -38,13 +38,19 @@ module.exports = function (sequelize, DataTypes) {
         },
         
         employee: {
-            type: DataTypes.TEXT,
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+        see_doctor: {
+            type: DataTypes.BOOLEAN,
             allowNull: false,
             validate: {
                 len: [1]
             }
         }
-
 
     });
 
