@@ -19,9 +19,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Charmonman|Noto+Serif+TC:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Charmonman|Noto+Serif+TC:400,700" rel="stylesheet">
 
-     <!-- Moment-->
+    <!-- Moment-->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
     <link rel="stylesheet" href="/css/style.css">
@@ -36,75 +36,93 @@
 
     </div>
 
- 
+
     <div class="container">
         <div id="holder">
-   
-   <form id="find-patient">
-           <div class="form-group">
-               <label for="nameInput">
-                   <h2>Search Patient</h2>
-               </label>
-               <div class="container">
-               <label for="first-name">First name</label>
-               <input type="text" class="form-control" id="firstName">
-               <label for="last-name">Last name</label>
-               <input type="text" class="form-control" id="lastName">
-           <br>
-           <button class="btn btn-primary" id="submit-search" type="submit">Submit</button>
-          
-           <br> <br>
-           
-           </div>
-   
-       </form>
-   
+
+            <form id="find-patient">
+                <div class="form-group">
+                    <label for="nameInput">
+                        <h2>Search Patient</h2>
+                    </label>
+                    <div class="container">
+                        <label for="first-name">First name</label>
+                        <input type="text" class="form-control" id="firstName">
+                        <label for="last-name">Last name</label>
+                        <input type="text" class="form-control" id="lastName">
+                        <br>
+                        <button class="btn btn-primary" id="submit-search" type="submit">Submit</button>
+
+                        <br> <br>
+
+                    </div>
+
+            </form>
+
         </div>
-        <div id="table-search" > 
-                <table class="table table-hover" >
-                        <thead>
-                          <tr>
-                            <th scope="col">Patient ID</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">D.O.B</th>
-                            <th scope="col">Activate</th>
-                          </tr>
-                        </thead>
-                        <tbody id="search-print">
-                          
-                        </tbody>
-                      </table>
-           </div>
-        </div>
-   
-   <div>
-       <a class="btn btn-primary" href="/newpatient" role="button">Add New Patient</a>
-   </div>
-    
-   
-   <div >
-        <table class="table table-hover" >
+        <div id="table-search">
+            <table class="table table-hover">
                 <thead>
-                  <tr>
+                    <tr>
+                        <th scope="col">Patient ID</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">D.O.B</th>
+                        <th scope="col">Activate</th>
+                    </tr>
+                </thead>
+                <tbody id="search-print">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div style=" text-align:center ">
+        <button class="btn btn-primary" id="search-click"> Find Patient </button>
+
+        <a class="btn btn-primary" href="/newpatient" role="button">Add New Patient</a>
+    </div>
+
+<!-- Waiting list for Nurse -->
+    <div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
                     <th scope="col">Patient ID</th>
                     <th scope="col">First</th>
                     <th scope="col">Last</th>
                     <th scope="col">See Patient</th>
-                  </tr>
-                </thead>
-                <tbody id="data-print">
+                </tr>
+            </thead>
+            <tbody id="data-print">
 
-                </tbody>
-              </table>
-       
-   </div>
+            </tbody>
+        </table>
+
+    </div>
+
+    <!-- Waiting list for Doctor -->
+
+    <div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Patient ID</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">See Patient</th>
+                </tr>
+            </thead>
+            <tbody id="doctor-que-print">
+
+            </tbody>
+        </table>
+
+    </div>
 
     <script src="/js/main_page.js"></script>
 
 </body>
 
 </html>
-
-
-

@@ -19,9 +19,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Charmonman|Noto+Serif+TC:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Charmonman|Noto+Serif+TC:400,700" rel="stylesheet">
 
-     <!-- Moment-->
+    <!-- Moment-->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
     <link rel="stylesheet" href="/css/style.css">
@@ -36,16 +36,16 @@
 
     </div>
 
- 
+
     <div>
         <h2>Patient View</h2>
         <div><span id='patient_name'></span></div>
         <div><span id='patient_name'></span></div>
-    
- 
-    
+
+
+
         <form action="post">
-    
+
             <p id="view_first"></p>
             <p id="view_last"> </p>
             <p id="view_id"> </p>
@@ -71,17 +71,27 @@
             <div class="form-row">
                 <div class="col-md-6 mb-3">
                     <label for="validationDefault02">Employee</label>
-                    <input type="text" class="form-control" id="employee" placeholder="City" required>
+                    <input type="text" class="form-control" id="employee" placeholder="Employee Name" required>
                 </div>
-    
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="doctor">Reason for Visit</label>
+                        <select class="custom-select" id="doctor">
+                            <option selected>Select an Option</option>
+                            <option value="true"> See Doctor</option>
+                            <option value="false"> Visit Complete </option>
+                        </select>
+                    </div>
+                </div>
+
         </form>
 
         <button class="btn btn-primary" type="submit-new" id="see-doctor">Submit to Doctor</button>
         <button class="btn btn-primary" type="submit-new" id="complete">complete</button>
 
 
-    
-    </div> 
+
+    </div>
     <script src="/js/new_patient.js"></script>
     <script src="/js/main_page.js"></script>
     <script src="/js/view.js"></script>
