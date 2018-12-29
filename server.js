@@ -2,11 +2,27 @@
 // Dependencies
 var express = require("express");
 var bodyParser = require("body-parser")
+var mysql = require("mysql")
 
 // Sets up the Express App
 
 var app = express();
 var PORT = process.env.PORT || 3000;
+
+
+if(process.env.JAWSDB_URL){
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
+}
+else{
+  // MySQL DB Connection Information
+  connection = mysql.createConnection({
+    host: "localhost",
+    port: 3306,
+    user: "root",
+    password: "root",
+    database: "patient_db"
+  });
+}
 
 
 // Requiring our models for syncing
