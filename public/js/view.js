@@ -59,10 +59,13 @@ $(document).ready(function () {
  function completePatient(data){
     $("#complete").on("click", function(event){
         event.preventDefault();
-    
+        
         var finishVisit = $("#doctor").val;
 
-        if (finishVisit === false){
+        var updatePost = {
+            patient_id : data.id
+        }
+
 
             $.ajax({
                 method: 'PUT',
@@ -75,14 +78,19 @@ $(document).ready(function () {
     
                 location.href = "/";
             })
+        
+           if (finishVisit === false) {            $.ajax({
+            method: 'PUT',
+            url: '/api/posts' + updatePost,
+            data: {
+                see_doctor: false
+            }
+        }).then(result => {
+            console.log(result)
 
-        } else {
-            location.href = "/";
-        }
+        })
 
-
-    
-    
+           }
     })
 }
 
