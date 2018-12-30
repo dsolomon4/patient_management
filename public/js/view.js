@@ -60,17 +60,26 @@ $(document).ready(function () {
     $("#complete").on("click", function(event){
         event.preventDefault();
     
-        $.ajax({
-            method: 'PUT',
-            url: '/api/patients/' + data.id,
-            data: {
-                active: false
-            }
-        }).then(result => {
-            console.log(result)
+        var finishVisit = $("#doctor").val;
 
+        if (finishVisit === false){
+
+            $.ajax({
+                method: 'PUT',
+                url: '/api/patients/' + data.id,
+                data: {
+                    active: false
+                }
+            }).then(result => {
+                console.log(result)
+    
+                location.href = "/";
+            })
+
+        } else {
             location.href = "/";
-        })
+        }
+
 
     
     
@@ -80,25 +89,6 @@ $(document).ready(function () {
 
 
 
-$("#see-doctor").on("click", function(event){
-    event.preventDefault();
-
-    var updatePatient = {
-        description: $("#visit-description").val()
-    };
-
-    var currentURL = window.location.origin;
-
-
-             $.post(currentURL + "/api/posts", updatePatient, function (data) {
-
-
-                console.log( data.first_name)
-                location.href = "/";
-
-
-            });
-})
 
 
 
