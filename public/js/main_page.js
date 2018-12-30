@@ -137,29 +137,33 @@ function updateDoctorQue(){
         for (var i = 0; i < result.length; i++) {
             if (result[i].see_doctor === true) {
                 
-                console.log(result[i].patient)
+                console.log(result[i].patient_id)
 
-                $.ajax({
-                    url: "api/patients",
-                    method: "GET"
+                var docQuePatient = result[i].patient_id
+
+                $.ajax("api/patient/" + docQuePatient,
+                    {
+                    type: "GET"
                 })
                 .then(function (data) {
                     console.log(data)
-                })
+                    console.log(data.first_name)
+                
 
-                // renderPatient(data)
+                printPatient(data)
 
-                // function renderPatient(data) {
+                function printPatient(data) {
                    
-                //     var waitList = $("<tr>");
-                //     waitList.append("<td>" + data[i].id + " " + "</td>")
-                //     waitList.append("<td>" + data[i].first_name + "</td>")
-                //     waitList.append("<td>" + data[i].last_name + "</td>")
-                //     waitList.append('<td> <a role= button href="/patientview/' + data[i].id + '"> See Patient </a> </td>')
+                    var waitList = $("<tr>");
+                    waitList.append("<td>" + data.id + " " + "</td>")
+                    waitList.append("<td>" + data.first_name + "</td>")
+                    waitList.append("<td>" + data.last_name + "</td>")
+                    waitList.append('<td> <a role= button href="/patientview/' + data.id + '"> See Patient </a> </td>')
 
-                //     $("#doctor-que-print").append(waitList)
+                    $("#doctor-que-print").append(waitList)
 
-                // }
+                }
+            })
             }
         }
         
