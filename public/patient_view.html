@@ -37,62 +37,97 @@
     </div>
 
 
-    <div>
-        <h2>Patient View</h2>
-        <div><span id='patient_name'></span></div>
-        <div><span id='patient_name'></span></div>
+    <div class="container index-container">
 
+        <div id="holder-view">
+            <div class="container">
+                <form action="post">
+                    <div class="form-row">
 
+                        <div class="col-md-4 mb-3">
+                            <h2 id="view_first"></h2>
+                        </div>
 
-        <form action="post">
-
-            <p id="view_first"></p>
-            <p id="view_last"> </p>
-            <p id="view_id"> </p>
-
-
-            <div class="form-row">
-                <div class="col-md-6 mb-3">
-                    <label for="visit">Reason for Visit</label>
-                    <select class="custom-select" id="reason-visit">
-                        <option selected>Select an Option</option>
-                        <option value="checkUp">Check Up</option>
-                        <option value="followUp">Follow Up</option>
-                        <option value="emergency">Emergency</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col-md-4 mb-3">
-                    <label for="validationDefault01">Notes on Visit</label>
-                    <textarea name="body" id="visit-description" cols="30" rows="10"></textarea>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col-md-6 mb-3">
-                    <label for="validationDefault02">Employee</label>
-                    <input type="text" class="form-control" id="employee" placeholder="Employee Name" required>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-6 mb-3">
-                        <label for="doctor">Reason for Visit</label>
-                        <select class="custom-select" id="doctor">
-                            <option selected>Select an Option</option>
-                            <option value="true"> See Doctor</option>
-                            <option value="false"> Visit Complete </option>
-                        </select>
+                        <div class="col-md-4 mb-3">
+                            <h2 id="view_last"> </h2>
+                        </div>
                     </div>
-                </div>
 
-        </form>
-
-        <button class="btn btn-primary" type="submit-new" id="complete">complete</button>
+                    <div class="form-row">
 
 
+                        <div class="col-md-4 mb-3">
+                            <label id="view_id"> </label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="visit">Reason for Visit</label>
+                            <select class="custom-select" id="reason-visit">
+                                <option selected>Select an Option</option>
+                                <option value="checkUp">Check Up</option>
+                                <option value="followUp">Follow Up</option>
+                                <option value="emergency">Emergency</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationDefault01">Notes on Visit</label>
+                            <textarea name="body" id="visit-description" cols="75" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationDefault02">Employee</label>
+                            <input type="text" class="form-control" id="employee" placeholder="Employee Name" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="doctor">Finish Appointment</label>
+                            <select class="custom-select" id="doctor">
+                                <option selected>Select an Option</option>
+                                <option value="true"> See Doctor</option>
+                                <option value="false"> Visit Complete </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" type="submit-new" id="complete">Complete</button>
+                        <a class="btn btn-primary" id="return-home" href="/" role="button">Return Home</a>
+                    </div>
+                </form>
+            </div>
+        </div>
 
     </div>
-    <script src="/js/new_patient.js"></script>
-    <script src="/js/main_page.js"></script>
+
+    <div class="container index-container">
+        <div id="holder-view">
+            <h3>Patient History</h3>
+            <div >
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Patient ID</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">See Patient</th>
+                        </tr>
+                    </thead>
+                    <tbody id="print-history">
+
+                    </tbody>
+                </table>
+
+
+
+            </div>
+        </div>
+    </div>
+
     <script src="/js/view.js"></script>
 
 </body>

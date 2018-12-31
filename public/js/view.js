@@ -1,32 +1,35 @@
 $(document).ready(function () {
 
     loadPatient()
- 
 
 })
 
- function loadPatient(){
+function loadPatient() {
     var pId = window.location.href.split("patientview/")[1]
-    $.ajax("/api/patient/" + pId,{
+    $.ajax("/api/patient/" + pId, {
         type: "GET",
-        
-    }).then(function(data){
-        console.log(data)
-        var postFirst = $("#view_first").html("First Name: " + data.first_name)
-        var postLast = $("#view_last").html("Last Name: " + data.last_name )
-        var postId = $("#view_id").html("Patient ID: " + data.id)
-    
-    
-        completePatient(data)
-    
-        submitPost(data)
-    
 
-        function submitPost(data){
-            $("#complete").on("click", function(event){
+    }).then(function (data) {
+        console.log(data)
+        var postFirst = $("#view_first").html(data.first_name + " " + data.last_name)
+        var postId = $("#view_id").html("Patient ID: " + data.id)
+
+        patientHistoryId = data.id
+
+        console.log(patientHistoryId)
+
+        completePatient(data)
+
+        submitPost(data)
+
+        viewHistory(patientHistoryId)
+
+
+        function submitPost(data) {
+            $("#complete").on("click", function (event) {
                 event.preventDefault();
-                
-                
+
+
                 var postVisitNotes = {
                     first_name: data.first_name,
                     last_name: data.last_name,
@@ -36,67 +39,99 @@ $(document).ready(function () {
                     employee: $("#employee").val(),
                     see_doctor: $("#doctor").val()
                 };
-                
+
                 console.log(postVisitNotes)
-    
+
                 var currentURL = window.location.origin;
-    
-    
-                 $.post(currentURL + "/api/posts", postVisitNotes, function (data) {
-    
-    
-                    console.log( data.first_name + " visit has been posted")
-                    
-    
+
+
+                $.post(currentURL + "/api/posts", postVisitNotes, function (data) {
+
+
+                    console.log(data.first_name + " visit has been posted")
+
+
                 });
-    
-            
+
+                ``
             })
         }
     });
- }
+}
 
- function completePatient(data){
-    $("#complete").on("click", function(event){
+function completePatient(data) {
+    $("#complete").on("click", function (event) {
         event.preventDefault();
-        
+
         var finishVisit = $("#doctor").val;
 
         var updatePost = {
-            patient_id : data.id
+            patient_id: data.id
         }
 
-
-            $.ajax({
-                method: 'PUT',
-                url: '/api/patients/' + data.id,
-                data: {
-                    active: false
-                }
-            }).then(result => {
-                console.log(result)
-    
-                location.href = "/";
-            })
-        
-           if (finishVisit === false) {            $.ajax({
+        $.ajax({
             method: 'PUT',
-            url: '/api/posts' + updatePost,
+            url: '/api/patients/' + data.id,
             data: {
-                see_doctor: false
+                active: false
             }
         }).then(result => {
             console.log(result)
 
+            location.href = "/";
         })
 
-           }
+        if (finishVisit === false) {
+            $.ajax({
+                method: 'PUT',
+                url: '/api/posts' + updatePost,
+                data: {
+                    see_doctor: false
+                }
+            }).then(result => {
+                console.log(result)
+
+            })
+
+        }
     })
 }
 
 
+function viewHistory(patientHistoryId) {
 
+    console.log(patientHistoryId + " this is the patient id number")
 
+    $.ajax("/api/posts", {
+        type: "GET",
+    }).then(function (result) {
+        console.log(result)
 
+        for (var i = 0; i < result.length; i++) {
+            console.log(result[i].patient_id)
 
+            if (result[i].patient_id == patientHistoryId) {
+                console.log(result[i].body)
+                console.log(result[i].createdAt)
 
+                printHistory(result)
+
+                function printHistory(result) {
+
+                    var visitDate = result[i].createdAt;
+                    var formatDate = moment(visitDate).format('ll')
+
+                    var history = $("<tr>");
+                    history.append("<td>" + formatDate + "</td>")
+                    history.append("<td>" + result[i].body + "</td>")
+                    history.append("<td>" + result[i].reason_for_visit + "</td>")
+                    history.append('<td>' + result[i].employee + '</td>')
+
+                    $("#print-history").append(history)
+
+                }
+            }
+        }
+
+    })
+}

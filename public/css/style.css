@@ -34,3 +34,25 @@ label{
 #table-search{
     margin: 25px;
 }
+
+.waiting-list{
+    background: rgb(167, 172, 247);
+    margin-bottom: 15px ;
+    margin-top: 15px;
+    padding-bottom: 15px;
+}
+.complete{
+    margin-left: 5px;
+}
+
+
+
+#holder-view{
+    background: rgb(167, 172, 247);
+    margin-bottom: 15px ;
+    padding-bottom: 15px;
+}
+
+.index-container{
+    width: 1000px
+}
