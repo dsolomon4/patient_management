@@ -3,6 +3,8 @@ $(document).ready(function () {
     $("#table-search").hide()
     $("#holder").hide()
 
+
+
     getPatientsAndRender()
 
     searchPatients()
@@ -12,6 +14,7 @@ $(document).ready(function () {
     updateDoctorQue()
 
 })
+
 
 function searchClick() {
     $("#search-click").on("click", function (event) {
@@ -31,13 +34,16 @@ function getPatientsAndRender() {
             console.log(data)
 
 
+
             for (var i = 0; i < data.length; i++) {
+
                 if (data[i].active === true) {
+
 
                     renderPatient(data)
 
                     function renderPatient(data) {
-                       
+
                         var waitList = $("<tr>");
                         waitList.append("<td>" + data[i].id + " " + "</td>")
                         waitList.append("<td>" + data[i].first_name + "</td>")
@@ -48,6 +54,9 @@ function getPatientsAndRender() {
 
                     }
                 }
+
+
+
             }
         })
 }
@@ -89,7 +98,7 @@ function searchPatients() {
 
                             var div = $("<tr>");
                             div.append("<td>" + data[i].id + " " + "</td>")
-                            div.append("<td>" + data[i].first_name+ "</td>")
+                            div.append("<td>" + data[i].first_name + "</td>")
                             div.append("<td>" + data[i].last_name + "</td>")
                             div.append("<td>" + viewDob + "</td>")
 
@@ -126,47 +135,50 @@ function searchPatients() {
     });
 }
 
-function updateDoctorQue(){
+function updateDoctorQue() {
     $.ajax({
         url: "api/posts",
         method: "GET"
     }).then(result => {
         console.log("this will load doctor wait")
         console.log(result)
-        
+
         for (var i = 0; i < result.length; i++) {
             if (result[i].see_doctor === true) {
-                
+
                 console.log(result[i].patient_id)
 
                 var docQuePatient = result[i].patient_id
 
-                $.ajax("api/patient/" + docQuePatient,
-                    {
-                    type: "GET"
-                })
-                .then(function (data) {
-                    console.log(data)
-                    console.log(data.first_name)
-                
+                $.ajax("api/patient/" + docQuePatient, {
+                        type: "GET"
+                    })
+                    .then(function (data) {
+                        console.log("data for doc que get")
+                        console.log(data.first_name)
 
-                printPatient(data)
+                        printPatient(data)
 
-                function printPatient(data) {
-                   
-                    var waitList = $("<tr>");
-                    waitList.append("<td>" + data.id + " " + "</td>")
-                    waitList.append("<td>" + data.first_name + "</td>")
-                    waitList.append("<td>" + data.last_name + "</td>")
-                    waitList.append('<td> <a role= button href="/patientview/' + data.id + '"> See Patient </a> </td>')
 
-                    $("#doctor-que-print").append(waitList)
+                        function printPatient(data) {
 
-                }
-            })
+                            console.log("see doctor")
+
+                            var waitList = $("<tr>");
+                            waitList.append("<td>" + data.id + " " + "</td>")
+                            waitList.append("<td>" + data.first_name + "</td>")
+                            waitList.append("<td>" + data.last_name + "</td>")
+                            waitList.append('<td> <a role= button href="/patientview/' + data.id + '"> See Patient </a> </td>')
+
+                            $("#doctor-que-print").append(waitList)
+
+                        }
+
+
+                    })
             }
         }
-        
+
 
     })
 

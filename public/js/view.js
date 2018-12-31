@@ -59,46 +59,44 @@ $(document).ready(function () {
  function completePatient(data){
     $("#complete").on("click", function(event){
         event.preventDefault();
+        
+        var finishVisit = $("#doctor").val;
+
+        var updatePost = {
+            patient_id : data.id
+        }
+
+
+            $.ajax({
+                method: 'PUT',
+                url: '/api/patients/' + data.id,
+                data: {
+                    active: false
+                }
+            }).then(result => {
+                console.log(result)
     
-        $.ajax({
+                location.href = "/";
+            })
+        
+           if (finishVisit === false) {            $.ajax({
             method: 'PUT',
-            url: '/api/patients/' + data.id,
+            url: '/api/posts' + updatePost,
             data: {
-                active: false
+                see_doctor: false
             }
         }).then(result => {
             console.log(result)
 
-            location.href = "/";
         })
 
-    
-    
+           }
     })
 }
 
 
 
 
-$("#see-doctor").on("click", function(event){
-    event.preventDefault();
-
-    var updatePatient = {
-        description: $("#visit-description").val()
-    };
-
-    var currentURL = window.location.origin;
-
-
-             $.post(currentURL + "/api/posts", updatePatient, function (data) {
-
-
-                console.log( data.first_name)
-                location.href = "/";
-
-
-            });
-})
 
 
 
