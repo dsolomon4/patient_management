@@ -11,7 +11,16 @@ function loadPatient() {
 
     }).then(function (data) {
         console.log(data)
-        var postFirst = $("#view_first").html(data.first_name + " " + data.last_name)
+
+        var firstNameArr = data.first_name.split("")
+        firstNameArr[0] = firstNameArr[0].toUpperCase()
+        var firstName = firstNameArr.join("")
+
+        var lastNameArr = data.last_name.split("")
+        lastNameArr[0] = lastNameArr[0].toUpperCase()
+        var lastName = lastNameArr.join("")
+
+        var postFirst = $("#view_first").html(firstName + " " + lastName)
         var postId = $("#view_id").html("Patient ID: " + data.id)
 
         patientHistoryId = data.id
