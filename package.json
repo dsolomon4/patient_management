@@ -14,7 +14,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,9 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dsolomon4/patient_management/issues"
+  },
+  "engines": {
+    "node": "8.11.3"
   },
   "homepage": "https://github.com/dsolomon4/patient_management#readme"
 }
