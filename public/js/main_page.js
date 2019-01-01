@@ -44,10 +44,19 @@ function getPatientsAndRender() {
 
                     function renderPatient(data) {
 
+                        var firstNameArr = data[i].first_name.split("")
+                        firstNameArr[0] = firstNameArr[0].toUpperCase()
+                        var firstName = firstNameArr.join("")
+
+                        var lastNameArr = data[i].last_name.split("")
+                        lastNameArr[0] = lastNameArr[0].toUpperCase()
+                        var lastName = lastNameArr.join("")
+
+
                         var waitList = $("<tr>");
                         waitList.append("<td>" + data[i].id + " " + "</td>")
-                        waitList.append("<td>" + data[i].first_name + "</td>")
-                        waitList.append("<td>" + data[i].last_name + "</td>")
+                        waitList.append("<td>" + firstName + "</td>")
+                        waitList.append("<td>" + lastName + "</td>")
                         waitList.append('<td> <a role= button href="/patientview/' + data[i].id + '"> See Patient </a> </td>')
 
                         $("#data-print").append(waitList)
@@ -94,12 +103,19 @@ function searchPatients() {
                             var dateOb = data[i].dob
                             var viewDob = moment(dateOb).format('ll')
 
+                            var firstNameArr = data[i].first_name.split("")
+                            firstNameArr[0] = firstNameArr[0].toUpperCase()
+                            var firstName = firstNameArr.join("")
+    
+                            var lastNameArr = data[i].last_name.split("")
+                            lastNameArr[0] = lastNameArr[0].toUpperCase()
+                            var lastName = lastNameArr.join("")
 
 
                             var div = $("<tr>");
                             div.append("<td>" + data[i].id + " " + "</td>")
-                            div.append("<td>" + data[i].first_name + "</td>")
-                            div.append("<td>" + data[i].last_name + "</td>")
+                            div.append("<td>" + firstName + "</td>")
+                            div.append("<td>" + lastName + "</td>")
                             div.append("<td>" + viewDob + "</td>")
 
                             div.append('<button  data-id=' + data[i].id + ' class="activate"> Activate </button>')
@@ -128,6 +144,8 @@ function searchPatients() {
 
                             });
                         }
+                    } else {
+                        $("#bounce-back").text("*** This patient does not exist ***")
                     }
                 }
             })
@@ -164,10 +182,18 @@ function updateDoctorQue() {
 
                             console.log("see doctor")
 
+                            var firstNameArr = data.first_name.split("")
+                            firstNameArr[0] = firstNameArr[0].toUpperCase()
+                            var firstName = firstNameArr.join("")
+    
+                            var lastNameArr = data.last_name.split("")
+                            lastNameArr[0] = lastNameArr[0].toUpperCase()
+                            var lastName = lastNameArr.join("")
+
                             var waitList = $("<tr>");
                             waitList.append("<td>" + data.id + " " + "</td>")
-                            waitList.append("<td>" + data.first_name + "</td>")
-                            waitList.append("<td>" + data.last_name + "</td>")
+                            waitList.append("<td>" + firstName + "</td>")
+                            waitList.append("<td>" + lastName + "</td>")
                             waitList.append('<td> <a role= button href="/patientview/' + data.id + '"> See Patient </a> </td>')
 
                             $("#doctor-que-print").append(waitList)
