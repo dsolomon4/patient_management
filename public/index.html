@@ -23,6 +23,9 @@
 
     <!-- Moment-->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <!-- chart.js -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
     <link rel="stylesheet" href="/css/style.css">
 
@@ -37,8 +40,7 @@
     </div>
 
 
-    <div class="container 
-    ">
+    <div class="container">
         <div id="holder">
 
             <form id="find-patient">
@@ -63,6 +65,7 @@
             </form>
 
         </div>
+
         <div id="table-search">
             <table class="table table-hover">
                 <thead>
@@ -87,9 +90,14 @@
         <a class="btn btn-primary" href="/newpatient" role="button">Add New Patient</a>
     </div>
 
+    
+    <div id="wait-chart">
+            <canvas id="myChart" width="400" height="200"></canvas>
+    </div>
+    
 <!-- Waiting list for Nurse -->
     <div class="waiting-list">
-        <table class="table table-hover">
+        <table class="table table-hover" id="wait">
             <thead>
                 <tr>
                     <th scope="col">Patient ID</th>

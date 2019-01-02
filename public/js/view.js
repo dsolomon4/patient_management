@@ -35,7 +35,7 @@ function loadPatient() {
 
 
         function submitPost(data) {
-            $("#complete").on("click", function (event) {
+            $("#submit-view").on("click", function (event) {
                 event.preventDefault();
 
 
@@ -62,14 +62,14 @@ function loadPatient() {
 
                 });
 
-                ``
+                
             })
         }
     });
 }
 
 function completePatient(data) {
-    $("#complete").on("click", function (event) {
+    $("#submit-view").on("click", function (event) {
         event.preventDefault();
 
         var finishVisit = $("#doctor").val;
@@ -82,7 +82,8 @@ function completePatient(data) {
             method: 'PUT',
             url: '/api/patients/' + data.id,
             data: {
-                active: false
+                active: false,
+              
             }
         }).then(result => {
             console.log(result)
@@ -132,8 +133,8 @@ function viewHistory(patientHistoryId) {
 
                     var history = $("<tr>");
                     history.append("<td>" + formatDate + "</td>")
-                    history.append("<td>" + result[i].body + "</td>")
                     history.append("<td>" + result[i].reason_for_visit + "</td>")
+                    history.append("<td>" + result[i].body + "</td>")
                     history.append('<td>' + result[i].employee + '</td>')
 
                     $("#print-history").append(history)

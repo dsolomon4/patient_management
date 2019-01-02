@@ -3,8 +3,6 @@ $(document).ready(function () {
     $("#table-search").hide()
     $("#holder").hide()
 
-
-
     getPatientsAndRender()
 
     searchPatients()
@@ -13,6 +11,8 @@ $(document).ready(function () {
 
     updateDoctorQue()
 
+    
+   
 })
 
 
@@ -39,7 +39,6 @@ function getPatientsAndRender() {
 
                 if (data[i].active === true) {
 
-
                     renderPatient(data)
 
                     function renderPatient(data) {
@@ -62,6 +61,8 @@ function getPatientsAndRender() {
                         $("#data-print").append(waitList)
 
                     }
+
+                    totalWaitList()
                 }
 
 
@@ -106,7 +107,7 @@ function searchPatients() {
                             var firstNameArr = data[i].first_name.split("")
                             firstNameArr[0] = firstNameArr[0].toUpperCase()
                             var firstName = firstNameArr.join("")
-    
+
                             var lastNameArr = data[i].last_name.split("")
                             lastNameArr[0] = lastNameArr[0].toUpperCase()
                             var lastName = lastNameArr.join("")
@@ -124,29 +125,12 @@ function searchPatients() {
 
                             $("#table-search").show()
 
-                            $(".activate").on("click", function (event) {
-
-                                var id = $(this).attr('data-id');
-
-
-                                $.ajax({
-                                    method: 'PUT',
-                                    url: '/api/patients/' + id,
-                                    data: {
-                                        active: true
-                                    }
-                                }).then(result => {
-                                    console.log(result)
-
-                                    location.reload()
-                                })
-
-
-                            });
+                           
                         }
-                    } else {
-                        $("#bounce-back").text("*** This patient does not exist ***")
                     }
+                    //  else {
+                    //     $("#bounce-back").text("*** This patient does not exist ***")
+                    // }
                 }
             })
 
@@ -168,6 +152,9 @@ function updateDoctorQue() {
 
                 var docQuePatient = result[i].patient_id
 
+                console.log("this is the post id..." + result[i].id)
+                var updateId = result[i].id
+
                 $.ajax("api/patient/" + docQuePatient, {
                         type: "GET"
                     })
@@ -185,7 +172,7 @@ function updateDoctorQue() {
                             var firstNameArr = data.first_name.split("")
                             firstNameArr[0] = firstNameArr[0].toUpperCase()
                             var firstName = firstNameArr.join("")
-    
+
                             var lastNameArr = data.last_name.split("")
                             lastNameArr[0] = lastNameArr[0].toUpperCase()
                             var lastName = lastNameArr.join("")
@@ -194,12 +181,18 @@ function updateDoctorQue() {
                             waitList.append("<td>" + data.id + " " + "</td>")
                             waitList.append("<td>" + firstName + "</td>")
                             waitList.append("<td>" + lastName + "</td>")
-                            waitList.append('<td> <a role= button href="/patientview/' + data.id + '"> See Patient </a> </td>')
+                            waitList.append('<td> <a role= button  class="patient-update" data-id=' + updateId +' href="/patientview/' + data.id + '"> See Patient </a> </td>')
 
                             $("#doctor-que-print").append(waitList)
 
+                            changeStaus()
                         }
 
+                        
+                        totalWaitList()
+
+                        console.log("data after push")
+                        console.log(data)
 
                     })
             }
@@ -209,4 +202,62 @@ function updateDoctorQue() {
     })
 
 
+}
+
+
+function totalWaitList() {
+
+    var currentNurseWait = $('#data-print').children().length;
+    console.log('tr count for nurse = ' + currentNurseWait);
+
+    var currentDoctorWait = $('#doctor-que-print').children().length;
+    console.log('tr count for doc= ' + currentDoctorWait);
+
+    var combineWait = currentDoctorWait + currentNurseWait
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'bar',
+
+        // The data for our dataset
+        data: {
+            labels: ["Nurse", "Doctor", "Total"],
+            datasets: [{
+                label: "Wait List",
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [currentNurseWait, currentDoctorWait, combineWait,],
+                
+            }]
+        },
+        
+        // Configuration options go here
+        options: {}
+    });
+
+}
+
+function changeStaus(){
+    $(".patient-update").on("click", function (event) {
+                                   
+
+        var id = $(this).attr('data-id');
+        
+        $.ajax({
+            method: 'PUT',
+            url: '/api/posts/' + id,
+            data: {
+                see_doctor: false
+            }
+        }).then(result => {
+            console.log(result)
+   
+        }).catch(function(err) {
+            alert(err.message);
+          });
+        
+
+
+    });
 }
