@@ -1,9 +1,7 @@
-
     $(document).ready(function () {
 
         $("#submit-new").on("click", function (event) {
             event.preventDefault();
-
 
                 var newPatient = {
                     first_name: $("#firstName").val().toLowerCase(),
@@ -31,7 +29,7 @@
                  $.post(currentURL + "/api/patients", newPatient, function (data) {
 
 
-                    console.log( data.first_name)
+                    console.log(data.first_name)
                     location.href = "/";
 
                 });
