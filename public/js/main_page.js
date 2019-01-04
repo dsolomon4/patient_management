@@ -253,9 +253,7 @@ function changeStaus(){
         }).then(result => {
             console.log(result)
    
-        }).catch(function(err) {
-            alert(err.message);
-          });
+        })
         
 
 
