@@ -91,19 +91,19 @@ function completePatient(data) {
             location.href = "/";
         })
 
-        if (finishVisit === false) {
-            $.ajax({
-                method: 'PUT',
-                url: '/api/posts' + updatePost,
-                data: {
-                    see_doctor: false
-                }
-            }).then(result => {
-                console.log(result)
+        // if (finishVisit === false) {
+        //     $.ajax({
+        //         method: 'PUT',
+        //         url: '/api/posts/' + updatePost,
+        //         data: {
+        //             see_doctor: false
+        //         }
+        //     }).then(result => {
+        //         console.log(result)
 
-            })
+        //     })
 
-        }
+        // }
     })
 }
 
@@ -123,6 +123,42 @@ function viewHistory(patientHistoryId) {
             if (result[i].patient_id == patientHistoryId) {
                 console.log(result[i].body)
                 console.log(result[i].createdAt)
+
+                console.log(result[i].see_doctor)
+
+                changeDocStatus = result[i].see_doctor
+                console.log(changeDocStatus + " this is doc status")
+
+                
+
+                if (changeDocStatus === true){
+                    console.log(result[i].id)
+
+                    postPatientId = result[i].id
+
+                    $.ajax({
+                        method: 'PUT',
+                        url: '/api/posts/' + postPatientId,
+                        data: {
+                            see_doctor: false,
+                          
+                        },
+                        where:{
+                            id: postPatientId
+                        }
+                    }).then(result => {
+                        console.log(result)
+            
+                    })
+
+                    console.log(postPatientId + " after post")
+                    console.log(result[i].see_doctor + " status after post")
+
+
+        
+                }
+
+                
 
                 printHistory(result)
 
@@ -145,3 +181,30 @@ function viewHistory(patientHistoryId) {
 
     })
 }
+
+
+
+// changeStaus()
+
+// function changeStaus(){
+//     $(".patient-update").on("click", function (event) {
+                                   
+//         var id = $(this).attr('data-id');
+        
+//         var callBack = result[0];
+
+//         $.ajax({
+//             method: 'PUT',
+//             url: '/api/posts/' + id,
+//             callBack: {
+//                 see_doctor: false
+//             }
+//         }).then(result => {
+//             alert(result)
+   
+//         })
+        
+
+
+//     });
+// }

@@ -11,6 +11,8 @@ $(document).ready(function () {
 
     updateDoctorQue()
 
+    var currentDoctorWait = 0;
+    var currentNurseWait= 0;
     
    
 })
@@ -178,6 +180,7 @@ function updateDoctorQue() {
                             var lastName = lastNameArr.join("")
 
                             var waitList = $("<tr>");
+                            waitList.addClass("doc-wait-row")
                             waitList.append("<td>" + data.id + " " + "</td>")
                             waitList.append("<td>" + firstName + "</td>")
                             waitList.append("<td>" + lastName + "</td>")
@@ -185,14 +188,14 @@ function updateDoctorQue() {
 
                             $("#doctor-que-print").append(waitList)
 
-                            changeStaus()
+                        
                         }
 
                         
                         totalWaitList()
 
                         console.log("data after push")
-                        console.log(data)
+                        console.log(result[0])
 
                     })
             }
@@ -238,24 +241,3 @@ function totalWaitList() {
 
 }
 
-function changeStaus(){
-    $(".patient-update").on("click", function (event) {
-                                   
-
-        var id = $(this).attr('data-id');
-        
-        $.ajax({
-            method: 'PUT',
-            url: '/api/posts/' + id,
-            data: {
-                see_doctor: false
-            }
-        }).then(result => {
-            console.log(result)
-   
-        })
-        
-
-
-    });
-}
