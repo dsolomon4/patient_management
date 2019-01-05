@@ -56,7 +56,7 @@ module.exports = function(app) {
 //   });
 
   // PUT route for updating posts
-  app.put("/api/posts", function(req, res) {
+  app.put("/api/posts/:id", function(req, res) {
     db.Post.update(
       req.body,
       {
@@ -67,4 +67,18 @@ module.exports = function(app) {
       res.json(dbPost);
     });
   });
+
+
+  app.put("/api/posts/:id", function (req, res) {
+    console.log("In activate patient ")
+    db.Patient.update({
+        see_doctor: req.body.see_doctor
+    }, {
+        where: {
+            id: req.params.id
+        }
+    }).then(function (dbPatient) {
+        res.json(dbPatient);
+    });
+});
 };

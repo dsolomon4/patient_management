@@ -18,24 +18,13 @@
                     active: $("#active").val()
                 };
 
-                
-
                 console.log(newPatient.first_name + " has been created")
 
-
                 var currentURL = window.location.origin;
-
-
                  $.post(currentURL + "/api/patients", newPatient, function (data) {
-
-
                     console.log(data.first_name)
                     location.href = "/";
-
                 });
-            
-                
-
         });
 
 
